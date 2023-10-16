@@ -25,7 +25,7 @@ router.post(
     const { email, password } = req.body;
     const loginRes = await userController.login({ email, password });
     sendCookie({ name: 'token', value: loginRes.token, response: res });
-    return handleRes({ response: res, data: { success: loginRes.success } });
+    handleRes({ response: res, data: { success: loginRes.success } });
   })
 );
 

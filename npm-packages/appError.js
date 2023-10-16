@@ -19,6 +19,14 @@ class AppError extends Error {
     3021: {
       status: 400,
     },
+    4034: {
+      status: 401,
+      message: 'Unauthorized',
+    },
+    6325: {
+      status: 400,
+      message: 'Cancel upcoming reservations manually before deleting property',
+    },
   };
 
   constructor({ code, statusCode, params, message }) {
@@ -27,7 +35,7 @@ class AppError extends Error {
     this.statusCode = AppError.errorMapping[statusCode]?.status || 500;
     this.params = params;
     this.message =
-      AppError.errorMapping[statusCode]?.message || message || "Something went wrong";
+      AppError.errorMapping[statusCode]?.message || message;
   }
 }
 

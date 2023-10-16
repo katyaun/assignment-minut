@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import helmet from "helmet";
 
+import errorHandler from "./src/middlewares/errorHandler.js";
 import { config } from "./config.js";
 
 const app = express();
@@ -18,5 +19,7 @@ const startApp = async () => {
     console.log("e", e);
   }
 };
+
+app.use(errorHandler);
 
 startApp();

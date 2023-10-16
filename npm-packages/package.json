@@ -1,0 +1,13 @@
+{
+  "name": "consider-as-project-npm-packages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.5.1"
+  }
+}

@@ -27,6 +27,10 @@ class AppError extends Error {
       status: 400,
       message: 'Cancel upcoming reservations manually before deleting property',
     },
+    4004: {
+      status: 404,
+      message: 'Not found',
+    },
   };
 
   constructor({ code, statusCode, params, message }) {

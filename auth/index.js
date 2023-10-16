@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import helmet from "helmet";
 
-import errorHandler from "./src/middlewares/errorHandler.js";
+import errorHandler from "../middlewares/errorHandler";
 import { config } from "./config.js";
 
 const app = express();

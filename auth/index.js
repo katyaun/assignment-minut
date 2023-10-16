@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import helmet from "helmet";
 
+import authRoutes from "./src/routes/index.js";
 import { config } from "./config.js";
 import { mongoClient } from "../db/index.js";
 import errorHandler from "../middlewares/errorHandler.js";
@@ -10,6 +11,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(helmet());
+app.use("/api/auth", authRoutes);
 
 const startApp = async () => {
   try {

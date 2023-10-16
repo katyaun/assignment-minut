@@ -15,7 +15,6 @@ app.use("/api/auth", authRoutes);
 
 const startApp = async () => {
   try {
-    console.log(`${config.mongo.host}/${config.mongo.authDB}`);
     await mongoClient.connectToCluster(
       `${config.mongo.host}/${config.mongo.authDB}`,
     );

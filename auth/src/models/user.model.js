@@ -1,6 +1,7 @@
 import { Schema } from "mongoose";
 import mongoose from "mongoose";
 import validator from '../../../npm-packages/validator.js'
+import EncryptionService from "../services/encryption.js";
 
 const User = new Schema(
   {
@@ -20,6 +21,14 @@ const User = new Schema(
     timestamps: true,
   },
 );
+
+User.pre('save', function(next) {
+    if (!this.password) {
+        return next();
+    }
+    this.password = EncryptionService.hashPassword(this.password);
+    return next();
+});
 
 User.index({ email: 1 }, { unique: true });
 

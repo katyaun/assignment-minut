@@ -1,20 +1,33 @@
 class AppError extends Error {
-  errorMapping = {
-    '4001': {
-      status: 401,
-      message: 'User with this email already exists',
-    },
-    '4000': {
+  static errorMapping = {
+    4001: {
       status: 400,
-      message: 'Missing email or password',
-    }
-  }
-  constructor({ code, statusCode, params }) {
+      message: "User with this email already exists",
+    },
+    4000: {
+      status: 400,
+      message: "Missing email or password",
+    },
+    4003: {
+      status: 400,
+      message: "Email is not registered",
+    },
+    4004: {
+      status: 400,
+      message: "Wrong passord",
+    },
+    3021: {
+      status: 400,
+    },
+  };
+
+  constructor({ code, statusCode, params, message }) {
     super();
     this.code = code;
-    this.statusCode = errorMapping[statusCode].status || 500;
+    this.statusCode = AppError.errorMapping[statusCode]?.status || 500;
     this.params = params;
-    this.message = errorMapping[statusCode].message || 'Smth went wrong';
+    this.message =
+      AppError.errorMapping[statusCode]?.message || message || "Something went wrong";
   }
 }
 

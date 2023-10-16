@@ -1,4 +1,4 @@
-import AppError from "../services/AppError.js";
+import AppError from "../npm-packages/appError.js";
 
 const errorHandler = (error, req, res, next) => {
   if (error instanceof AppError) {
@@ -9,7 +9,7 @@ const errorHandler = (error, req, res, next) => {
     });
   }
 
-  return res.status(500).send("Something went wrong");
+  return res.status(500).send(error.message);
 };
 
 export default errorHandler;

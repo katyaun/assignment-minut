@@ -4,7 +4,7 @@ import helmet from "helmet";
 
 import authRoutes from "./src/routes/index.js";
 import { config } from "./config.js";
-import { mongoClient } from "../db/index.js";
+import { mongoClient } from "./src/db/index.js";
 import errorHandler from "../middlewares/errorHandler.js";
 
 const app = express();
@@ -15,6 +15,7 @@ app.use("/api/auth", authRoutes);
 
 const startApp = async () => {
   try {
+    console.log(`${config.mongo.host}/${config.mongo.authDB}`);
     await mongoClient.connectToCluster(
       `${config.mongo.host}/${config.mongo.authDB}`,
     );

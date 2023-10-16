@@ -18,7 +18,7 @@ router.post(
   asyncHandler(async (req, res, next) => {
     const property = await propertiesController.createProperty(req.body);
     return handleRes({ response: res, data: property });
-  })
+  }),
 ); // aysn handler
 
 router.get(
@@ -29,7 +29,7 @@ router.get(
       id: propertyId,
     });
     return handleRes({ response: res, data: proprty });
-  })
+  }),
 );
 
 router.get(
@@ -41,19 +41,30 @@ router.get(
       role,
     });
     return handleRes({ response: res, data: properties });
-  })
+  }),
 );
 
-router.put("/:propertyId",  TokenService.validateToken, asyncHandler(async (req, res, next) => {
+router.put(
+  "/:propertyId",
+  TokenService.validateToken,
+  asyncHandler(async (req, res, next) => {
     const { propertyId } = req.params;
-    const updatedProperty = await propertiesController.updateProperty({ id: propertyId, data: req.body });
+    const updatedProperty = await propertiesController.updateProperty({
+      id: propertyId,
+      data: req.body,
+    });
     return handleRes({ response: res, data: updatedProperty });
-}));
+  }),
+);
 
-router.delete("/:propertyId", TokenService.validateToken, asyncHandler(async (req, response, next) => {
+router.delete(
+  "/:propertyId",
+  TokenService.validateToken,
+  asyncHandler(async (req, response, next) => {
     const { propertyId } = req.params;
     await propertiesController.deleteProperty(propertyId);
     return handleRes({ response, data: { success: true } });
-}));
+  }),
+);
 
 export default router;

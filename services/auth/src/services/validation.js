@@ -14,7 +14,7 @@ class ValidationService {
       }
     }
     if (!isValid) {
-      throw new AppError({ statusCode: '3021', message: errorMessages });
+      throw new AppError({ statusCode: "3021", message: errorMessages });
     }
     return isValid;
   }

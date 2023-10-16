@@ -11,16 +11,18 @@ const router = express.Router();
 
 const reservationsRepository = new ReservationsRepository(ReservationModel);
 const reservationsController = new ReservationsController(
-  reservationsRepository
+  reservationsRepository,
 );
 
 router.post(
   "/",
   TokenService.validateToken,
   asyncHandler(async (req, res, next) => {
-    const reservation = await reservationsController.createReservation(req.body);
+    const reservation = await reservationsController.createReservation(
+      req.body,
+    );
     return handleRes({ response: res, data: reservation });
-  })
+  }),
 );
 
 router.get(
@@ -34,7 +36,7 @@ router.get(
       role,
     });
     return handleRes({ response: res, data: reservation });
-  })
+  }),
 );
 
 router.get(
@@ -47,7 +49,7 @@ router.get(
       role,
     });
     return handleRes({ response: res, data: reservations });
-  })
+  }),
 );
 
 export default router;

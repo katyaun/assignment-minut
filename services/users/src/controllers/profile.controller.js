@@ -8,9 +8,7 @@ class ProfileController {
 
   async createProfile(data) {
     if (data.id) {
-      const existingProfile = await this.repository.getProfileById(
-        data.id,
-      );
+      const existingProfile = await this.repository.getProfileById(data.id);
       if (existingProfile) {
         return existingProfile;
       }

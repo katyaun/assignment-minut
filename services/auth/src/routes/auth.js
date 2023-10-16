@@ -3,7 +3,10 @@ import { asyncHandler } from "../../../../../assignment-minut/middlewares/asyncH
 import UserRepository from "../repository/users.repository.js";
 import UsersController from "../controllers/users.controller.js";
 import { UserModel } from "../models/user.model.js";
-import { handleRes, sendCookie } from "../../../../../assignment-minut/utils/httpResHandler.js";
+import {
+  handleRes,
+  sendCookie,
+} from "../../../../../assignment-minut/utils/httpResHandler.js";
 
 const router = express.Router();
 
@@ -14,9 +17,9 @@ router.post(
   "/signup",
   asyncHandler(async (req, res) => {
     const signupRes = await userController.signup(req.body);
-    sendCookie({ name: 'token', value: signupRes.token, response: res });
+    sendCookie({ name: "token", value: signupRes.token, response: res });
     handleRes({ response: res, data: { success: signupRes.success } });
-  })
+  }),
 );
 
 router.post(
@@ -24,9 +27,9 @@ router.post(
   asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     const loginRes = await userController.login({ email, password });
-    sendCookie({ name: 'token', value: loginRes.token, response: res });
+    sendCookie({ name: "token", value: loginRes.token, response: res });
     handleRes({ response: res, data: { success: loginRes.success } });
-  })
+  }),
 );
 
 export default router;

@@ -23,9 +23,10 @@ class PropertiesController {
   }
 
   async deleteProperty(propertyId) {
-    const currenctAndUpcomingReservations = await ReservationsRemoteService.getReservations(propertyId);
+    const currenctAndUpcomingReservations =
+      await ReservationsRemoteService.getReservations(propertyId);
     if (currenctAndUpcomingReservations) {
-      throw new AppError({ statusCode: '6325' });
+      throw new AppError({ statusCode: "6325" });
     }
     return this.repository.deleteProperty(id);
   }

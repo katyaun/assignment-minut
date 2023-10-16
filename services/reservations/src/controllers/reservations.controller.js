@@ -36,8 +36,7 @@ class ReservationsController {
   }
 
   async getReservationById({ id, role }) {
-    const reservation =
-      await this.repository.getReservationById(id);
+    const reservation = await this.repository.getReservationById(id);
 
     if (reservation) {
       return this.enrichReservation({ reservation, role });

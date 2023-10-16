@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
 import mongoose from "mongoose";
-import validator from '../../../../../assignment-minut/npm-packages/validator.js'
+import validator from "../../../../../assignment-minut/npm-packages/validator.js";
 import EncryptionService from "../services/encryption.js";
 
 const User = new Schema(
@@ -10,7 +10,7 @@ const User = new Schema(
       required: true,
       unique: true,
       trim: true,
-      validate: [validator.isEmail, 'Please provide a valid email.'], // status?
+      validate: [validator.isEmail, "Please provide a valid email."], // status?
     },
     password: {
       type: String,
@@ -22,12 +22,12 @@ const User = new Schema(
   },
 );
 
-User.pre('save', function(next) {
-    if (!this.password) {
-        return next();
-    }
-    this.password = EncryptionService.hashPassword(this.password);
+User.pre("save", function (next) {
+  if (!this.password) {
     return next();
+  }
+  this.password = EncryptionService.hashPassword(this.password);
+  return next();
 });
 
 User.index({ email: 1 }, { unique: true });

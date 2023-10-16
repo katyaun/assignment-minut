@@ -21,15 +21,15 @@ class AppError extends Error {
     },
     4034: {
       status: 401,
-      message: 'Unauthorized',
+      message: "Unauthorized",
     },
     6325: {
       status: 400,
-      message: 'Cancel upcoming reservations manually before deleting property',
+      message: "Cancel upcoming reservations manually before deleting property",
     },
     4004: {
       status: 404,
-      message: 'Not found',
+      message: "Not found",
     },
   };
 
@@ -38,8 +38,7 @@ class AppError extends Error {
     this.code = code;
     this.statusCode = AppError.errorMapping[statusCode]?.status || 500;
     this.params = params;
-    this.message =
-      AppError.errorMapping[statusCode]?.message || message;
+    this.message = AppError.errorMapping[statusCode]?.message || message;
   }
 }
 

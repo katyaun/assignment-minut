@@ -1,5 +1,14 @@
 class PropertyDto {
-  constructor({ name, long, lat, ownerId, timezone, bookingSlots, role, region }) {
+  constructor({
+    name,
+    long,
+    lat,
+    ownerId,
+    timezone,
+    bookingSlots,
+    role,
+    region,
+  }) {
     this.name = name;
     this.ownerId = ownerId;
     this.region = region || this.getRegion();
@@ -10,7 +19,7 @@ class PropertyDto {
   }
 
   getRegion() {
-    return 'Europe';
+    return "Europe";
   }
 }
 

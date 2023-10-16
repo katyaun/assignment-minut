@@ -22,14 +22,14 @@ const Property = new Schema(
       required: true,
     },
     bookingSlots: [String],
-  // shard profile collection by regions to improve performance
+    // shard profile collection by regions to improve performance
     // shardKey: {
-    //   region: 1,  
+    //   region: 1,
     // },
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export const ProfileModel = mongoose.model("Property", Property);

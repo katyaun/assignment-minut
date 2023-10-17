@@ -1,4 +1,4 @@
-import ValidationService from "./validation.js";
+import ValidationService from "../../validation.js";
 
 export class PasswordValidation extends ValidationService {
   MIN_LENGTH = 3;

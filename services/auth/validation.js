@@ -1,5 +1,5 @@
 import validator from "validator";
-import AppError from "../../../../../assignment-minut/npm-packages/appError.js";
+import AppError from "../../npm-packages/appError.js";
 
 class ValidationService {
   validationMap = {};

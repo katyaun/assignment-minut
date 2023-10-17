@@ -8,4 +8,5 @@ export const config = {
     host: process.env.MONGO_CONNECTION,
     usersDb: process.env.USERS_DB,
   },
+  jwtKey: process.env.JWT_KEY,
 };

@@ -1,5 +1,10 @@
 FROM node:alpine
 
+ENV PORT=
+ENV USERS_DB=
+ENV MONGO_CONNECTION=
+ENV JWT_KEY=
+
 WORKDIR /app
 
 COPY package*.json ./

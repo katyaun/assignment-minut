@@ -10,4 +10,5 @@ export const config = {
   },
   usersUrl: process.env.USERS_REMOTE_URL,
   propertiesUrl: process.env.PROPERTIES_URL,
+  jwtKey: process.env.JWT_KEY,
 };

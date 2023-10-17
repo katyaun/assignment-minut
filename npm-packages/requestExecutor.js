@@ -1,4 +1,5 @@
 import axios from "axios";
+import AppError from "./appError";
 
 class RequestExecutor {
   baseURL;
@@ -20,7 +21,7 @@ class RequestExecutor {
       });
       return response.data;
     } catch (error) {
-      return {};
+      throw new AppError({});
     }
   }
 
@@ -30,7 +31,7 @@ class RequestExecutor {
       const response = await axios.post(url, body, this.httpRequestConfig);
       return response.data;
     } catch (error) {
-      return {};
+      throw new AppError({});
     }
   }
 }

@@ -1,7 +1,6 @@
 # assignment-minut
 
-Architecture - microservices
-DB - MongoDB
+Architecture - microservices, DB - MongoDB
 
 services - auth, users, chat, properties, reservations
 

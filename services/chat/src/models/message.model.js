@@ -22,7 +22,6 @@ const Message = new Schema(
       type: String,
       required: true,
     },
-    // max length
   },
   {
     timestamps: true,

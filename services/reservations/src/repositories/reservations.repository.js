@@ -15,6 +15,15 @@ class ReservationsRepository {
     const queryFilter = data; // create filter obj or aggregation e.g. search by region or by polygon
     return this.db.find(queryFilter);
   }
+
+  async updateReservation({ data }) {
+    return this.db.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: data,
+      },
+    );
+  }
 }
 
 export default ReservationsRepository;

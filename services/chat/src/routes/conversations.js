@@ -36,8 +36,9 @@ router.get("/:userId", async (req, response, next) => {
 router.get("/:conversationId", async (req, response, next) => {
   try {
     const { conversationId } = req.params;
-    const { role } = req.query;
-    // const res = await conversationsController.({ id: reservationId, role });
+    const res = await conversationsController.getConversationById({
+      id: conversationId,
+    });
     return handleRes({ response, data: res });
   } catch (e) {
     next(e);

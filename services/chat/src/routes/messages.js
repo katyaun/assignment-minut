@@ -12,7 +12,7 @@ const messagesController = new MessagesController(messagesRepository);
 
 router.post("/", async (req, response, next) => {
   try {
-    const res = await conversationsController.createConversation(req.body);
+    const res = await messagesController.addMessage(req.body);
     return handleRes({ response, data: res });
   } catch (e) {
     next(e);
@@ -22,10 +22,10 @@ router.post("/", async (req, response, next) => {
 router.get("/:conversationId", async (req, response, next) => {
   try {
     const { conversationId } = req.params;
-    const { cursor } = req.query;
+    const { cursor, limit } = req.query;
     const res = await messagesController.getMessagesByConversationId({
       id: conversationId,
-      filter: { cursor },
+      filter: { cursor, limit },
     });
     return handleRes({ response, data: res });
   } catch (e) {

@@ -5,9 +5,10 @@ import { ProfileModel } from "../models/profile.model.js";
 import ProfileRepository from "../repositories/profile.repository.js";
 import { asyncHandler } from "../../../../../assignment-minut/middlewares/asyncHandler.js";
 import TokenService from "../services/token.js";
-import { roles } from "../consts.js";
 import AppError from "../../../../../assignment-minut/npm-packages/appError.js";
 import { handleRes } from "../../../../../assignment-minut/utils/httpResHandler.js";
+import { getProfileRole } from "../utils.js";
+import { roles } from "../../../../utils/consts.js";
 
 const router = express.Router();
 
@@ -29,10 +30,10 @@ router.get(
   async (req, response, next) => {
     try {
       const { profileId } = req.params;
-      const role = getRole({ userId: req.usersId, profileId });
+      const role = getProfileRole({ userId: req.usersId, profileId });
       const res = await profileController.getProfileById({
         id: profileId,
-        role,
+        role: req.query.role || role,
       });
       return handleRes({ response, data: res });
     } catch (e) {
@@ -46,7 +47,7 @@ router.put(
   TokenService.validateToken,
   asyncHandler(async (req, res, next) => {
     const { profileId } = req.params;
-    const role = getRole({ userId: req.usersId, profileId });
+    const role = getProfileRole({ userId: req.usersId, profileId });
     if (role !== roles.PROFILE_OWNER) {
       throw new AppError({ statusCode: "4034" });
     }
@@ -58,15 +59,5 @@ router.put(
     return handleRes({ response: res, data: profile });
   }),
 );
-
-// router.delete("/:profileId", TokenService.validateToken, async (req, response, next) => {
-//   try {
-//     const { profileId } = req.params;
-//     await profileController.deleteProfile(profileId);
-//     return handleRes({ response, data: { success: true } });
-//   } catch (e) {
-//     next(e);
-//   }
-// });
 
 export default router;

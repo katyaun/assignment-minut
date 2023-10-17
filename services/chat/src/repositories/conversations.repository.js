@@ -14,11 +14,6 @@ class ConversationRepository {
   async getConversationById(id) {
     return this.db.findOne({ _id: id });
   }
-
-  async getReservations({ data }) {
-    const queryFilter = data; // create filter obj or aggregation e.g. search by region or by polygon
-    return this.db.find(queryFilter);
-  }
 }
 
 export default ConversationRepository;

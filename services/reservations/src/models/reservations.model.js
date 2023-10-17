@@ -15,6 +15,10 @@ const Reservation = new Schema(
       type: String,
       required: true,
     },
+    host: {
+      type: String,
+      required: true,
+    },
     checkin: {
       date: {
         type: Date,

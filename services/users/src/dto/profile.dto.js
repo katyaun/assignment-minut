@@ -1,4 +1,4 @@
-import { roles } from "../consts.js";
+import { roles } from "../../../../utils/consts";
 
 class ProfileDto {
   constructor({ profile, role }) {

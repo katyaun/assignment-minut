@@ -19,7 +19,7 @@ router.post(
     const property = await propertiesController.createProperty(req.body);
     return handleRes({ response: res, data: property });
   }),
-); // aysn handler
+);
 
 router.get(
   "/:propertyId",
@@ -27,6 +27,7 @@ router.get(
     const { propertyId } = req.params;
     const proprty = await propertiesController.getPropertyById({
       id: propertyId,
+      role: req.query.role,
     });
     return handleRes({ response: res, data: proprty });
   }),

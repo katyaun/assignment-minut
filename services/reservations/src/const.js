@@ -6,3 +6,9 @@ export const reservationStatus = {
   CANCELED: "CANCELED",
   REFUNDED: "REFUNDED",
 };
+
+export const reservationActions = {
+  CANCEL: "CANCEL",
+  APPROVE: "APPROVE",
+  REJECT: "REJECT",
+};

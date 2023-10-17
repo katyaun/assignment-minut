@@ -30,10 +30,9 @@ router.get(
   TokenService.validateToken,
   asyncHandler(async (req, res, next) => {
     const { reservationId } = req.params;
-    const { role } = req.query;
     const reservation = await reservationsController.getReservationById({
       id: reservationId,
-      role,
+      userId: req.userId,
     });
     return handleRes({ response: res, data: reservation });
   }),
@@ -43,10 +42,25 @@ router.get(
   "/",
   TokenService.validateToken,
   asyncHandler(async (req, res, next) => {
-    const { role, statuses, date } = req.query;
+    const { statuses, date } = req.query;
     const reservations = await reservationsController.getReservations({
       data: { statuses, date },
-      role,
+      userId: req.userId,
+    });
+    return handleRes({ response: res, data: reservations });
+  }),
+);
+
+router.post(
+  "/action",
+  TokenService.validateToken,
+  asyncHandler(async (req, res, next) => {
+    const { reservationId } = req.query;
+    const { action } = req.body;
+    const reservations = await reservationsController.doActionOnReservation({
+      reservationId,
+      action,
+      userId: req.userId,
     });
     return handleRes({ response: res, data: reservations });
   }),

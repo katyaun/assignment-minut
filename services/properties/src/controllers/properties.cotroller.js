@@ -8,6 +8,7 @@ class PropertiesController {
   }
 
   async createProperty(data) {
+    // validate input
     const property = new PropertyDto(data);
     return this.repository.createProperty(property);
   }
@@ -24,7 +25,13 @@ class PropertiesController {
 
   async deleteProperty(propertyId) {
     const currenctAndUpcomingReservations =
-      await ReservationsRemoteService.getReservations(propertyId);
+      await ReservationsRemoteService.getReservations(propertyId, {
+        statuses: [
+          reservationStatus.CHECKEDIN,
+          reservationStatus.REQUESTED,
+          reservationStatus.UPCOMING,
+        ],
+      });
     if (currenctAndUpcomingReservations) {
       throw new AppError({ statusCode: "6325" });
     }
@@ -32,7 +39,9 @@ class PropertiesController {
   }
 
   async updateProperty({ id, data }) {
-    return this.repository.updateProperty({ id, data });
+    // validate data
+    const property = new PropertyDto(data);
+    return this.repository.updateProperty({ id, data: property });
   }
 
   async getProperties({ data, role }) {

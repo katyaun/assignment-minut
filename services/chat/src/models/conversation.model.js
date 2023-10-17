@@ -6,7 +6,7 @@ const { ObjectId } = Schema.Types;
 const Conversation = new Schema(
   {
     users: {
-      type: [ObjectId], // ref users ids
+      type: [ObjectId],
       required: true,
     },
   },

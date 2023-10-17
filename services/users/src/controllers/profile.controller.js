@@ -27,10 +27,6 @@ class ProfileController {
     }
   }
 
-  // async deleteProfile({ id }) {
-  //   return this.repository.deleteProfile(id);
-  // }
-
   async updateProfile({ id, data }) {
     return this.repository.updateProfile({ id, data });
   }
